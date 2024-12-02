@@ -1,0 +1,25 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class ArrayListExample {
+
+    public static void main(String[] args) {
+        // Correctly initialize the ArrayList
+        ArrayList<Integer> integerList = new ArrayList<>();
+
+        // Add elements to the ArrayList
+        integerList.add(10);
+        integerList.add(20);
+        integerList.add(30);
+        integerList.add(40);
+        integerList.add(50);
+
+        // Iterate over the ArrayList using an Iterator
+        System.out.println("Values in the ArrayList using iteration:");
+        Iterator<Integer> iterator = integerList.iterator(); // Initialize the iterator
+
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
+        }
+    }
+}
