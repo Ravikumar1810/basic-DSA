@@ -1,0 +1,129 @@
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Scanner;
+
+public class FruitManager {
+    public static void main(String[] args) {
+        LinkedList<String> fruitList = new LinkedList<>();
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        do {
+            System.out.println("\nFruit Manager Menu:");
+            System.out.println("1. Add Fruits");
+            System.out.println("2. Remove Fruits");
+            System.out.println("3. Clear Fruits");
+            System.out.println("4. Display Fruits");
+            System.out.println("5. Sort Fruits");
+            System.out.println("6. Check for a Fruit");
+            System.out.println("7. Get List Size");
+            System.out.println("8. Check if List is Empty");
+            System.out.println("9. Create a Sublist");
+            System.out.println("10. Exit");
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline
+
+            switch (choice) {
+                case 1: // Add Fruits
+                    System.out.print("Enter fruits (comma-separated): ");
+                    String input = scanner.nextLine();
+                    String[] fruitsToAdd = input.split(",");
+                    for (String fruit : fruitsToAdd) {
+                        fruitList.add(fruit.trim());
+                    }
+                    System.out.println("Fruits added!");
+                    break;
+
+                case 2: // Remove Fruits
+                    System.out.println("1. Remove by Name");
+                    System.out.println("2. Remove by Index");
+                    System.out.print("Choose option: ");
+                    int removeOption = scanner.nextInt();
+                    scanner.nextLine(); // Consume newline
+
+                    if (removeOption == 1) {
+                        System.out.print("Enter fruit name to remove: ");
+                        String fruitToRemove = scanner.nextLine();
+                        if (fruitList.remove(fruitToRemove)) {
+                            System.out.println(fruitToRemove + " removed.");
+                        } else {
+                            System.out.println(fruitToRemove + " not found in the list.");
+                        }
+                    } else if (removeOption == 2) {
+                        System.out.print("Enter index to remove: ");
+                        int index = scanner.nextInt();
+                        if (index >= 0 && index < fruitList.size()) {
+                            System.out.println(fruitList.remove(index) + " removed.");
+                        } else {
+                            System.out.println("Invalid index.");
+                        }
+                    }
+                    break;
+
+                case 3: // Clear Fruits
+                    fruitList.clear();
+                    System.out.println("All fruits cleared.");
+                    break;
+
+                case 4: // Display Fruits
+                    if (fruitList.isEmpty()) {
+                        System.out.println("The fruit list is empty.");
+                    } else {
+                        System.out.println("Fruits in the list: " + fruitList);
+                    }
+                    break;
+
+                case 5: // Sort Fruits
+                    Collections.sort(fruitList);
+                    System.out.println("Fruits sorted alphabetically.");
+                    break;
+
+                case 6: // Check for a Fruit
+                    System.out.print("Enter the fruit name to check: ");
+                    String fruitToCheck = scanner.nextLine();
+                    if (fruitList.contains(fruitToCheck)) {
+                        System.out.println(fruitToCheck + " is present in the list.");
+                    } else {
+                        System.out.println(fruitToCheck + " is not in the list.");
+                    }
+                    break;
+
+                case 7: // Get List Size
+                    System.out.println("Total number of fruits: " + fruitList.size());
+                    break;
+
+                case 8: // Check if List is Empty
+                    if (fruitList.isEmpty()) {
+                        System.out.println("The fruit list is empty.");
+                    } else {
+                        System.out.println("The fruit list is not empty.");
+                    }
+                    break;
+
+                case 9: // Create a Sublist
+                    System.out.print("Enter the start index: ");
+                    int startIndex = scanner.nextInt();
+                    System.out.print("Enter the end index: ");
+                    int endIndex = scanner.nextInt();
+
+                    if (startIndex >= 0 && endIndex <= fruitList.size() && startIndex < endIndex) {
+                        System.out.println("Sublist: " + fruitList.subList(startIndex, endIndex));
+                    } else {
+                        System.out.println("Invalid range. Please ensure the indices are within bounds and start < end.");
+                    }
+                    break;
+
+                case 10: // Exit
+                    System.out.println("Exiting Fruit Manager. Goodbye!");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+                    break;
+            }
+        } while (choice != 10);
+
+        scanner.close();
+    }
+}
