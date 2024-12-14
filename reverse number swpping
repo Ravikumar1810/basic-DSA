@@ -1,0 +1,26 @@
+import java.util.Arrays; // Import required for Arrays.toString()
+
+class Main {
+    public static void main(String[] args) {
+        int[] arr = {1, 45, 8, 34, 78, 786};
+        reverse(arr);
+        System.out.println(Arrays.toString(arr)); // Correct method call
+    }
+
+    static void reverse(int[] arr) {
+        int start = 0;
+        int end = arr.length - 1;
+        while (start < end) { // Correct condition
+            swap(arr, start, end); // Use the swap method
+            start++;
+            end--;
+        }
+    }
+
+  // Swap method definition
+    static void swap(int[] arr, int i, int j) { 
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+}
